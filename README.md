@@ -19,9 +19,6 @@ This repository contains the documentation and evidence collected during **Week 
 |Modules Completed|W2-PM1 - Multiple Kali Tools & W2-PM5 - Zenmap Scanning |
 | Target | networkwalks.com (authorised permission granted) and a personally controlled virtualized Local Area Network (LAN) used for host discovery and network scanning exercises |
 |Permission Secured| Yes|
-| Assessment Type | Passive Reconnaissance |
-| Scope | Publicly Available Information Gathering |
-| Assessment Environment | Authorized Training Lab |
 |Phasese Covered| Phase 1: Reconnaissance & Footprinting and Phase 2: Scanning & Network Discovery|
 
 ---
@@ -32,9 +29,9 @@ The external investigation collected domain registration, DNS, web technology, H
 
 ---
 
-# Methodology
+# Methodology & Evidence Collected
 
-## Phase 1: Target Reconnaissance (networkwalks.com)
+## W2-PM1-Multiple Kali Tools: Target Reconnaissance (networkwalks.com)
 
 Using Kali Linux, the following reconnaissance activities were performed against **networkwalks.com**:
 
@@ -42,50 +39,45 @@ Using Kali Linux, the following reconnaissance activities were performed against
 
 Used to gather public registration information associated with a domain, including registrar details and registration records.
 
+<img width="1273" height="792" alt="whois-results" src="https://github.com/user-attachments/assets/8520ad99-8dcd-4fca-a126-fb36212d1db2" />
+
 ### NSLookup
 
 Queried DNS records associated with **networkwalks.com**.
+
+<img width="1277" height="798" alt="nslookup-results" src="https://github.com/user-attachments/assets/02992b59-a002-4a49-9a05-17077147badd" />
 
 ### DNSRecon
 
 Performed DNS enumeration to identify available DNS-related information.
 
+<img width="1270" height="796" alt="dnsrecon-results" src="https://github.com/user-attachments/assets/4be9bacd-9e96-4a95-89ee-a18c4e50ee74" />
+
 ### WhatWeb
 
 Identified technologies, frameworks, and web server characteristics associated with **networkwalks.com**.
+
+<img width="1277" height="792" alt="whatweb-results" src="https://github.com/user-attachments/assets/6ea51a42-ccda-4b7f-8674-bb4827fc48be" />
 
 ### cURL -l
 
 Retrieved HTTP response information and examined web headers.
 
+<img width="1278" height="798" alt="curl-results" src="https://github.com/user-attachments/assets/2fe6b141-548f-4b00-8082-8d6a5a482fbf" />
+
 ### WAFW00F
 
 Used to detect the presence of Web Application Firewalls (WAFs) protecting web applications.
 
+<img width="1272" height="792" alt="wafw00f-results" src="https://github.com/user-attachments/assets/1dd1bab8-aed0-4716-9daa-a4ce3d18ae9a" />
+
 ---
 
-# Phase 2: Network Discovery Activities
+# W2-PM5-Zenmap Scanning: Network Discovery Activities
 
 Separate from the reconnaissance activities against **networkwalks.com**, a Windows 10 virtual machine was used within the lab environment to perform network enumeration and host discovery exercises.
 
-### Windows Command Prompt
-
-The following information was identified:
-
-- IPv4 Address
-- MAC Address
-- Default Gateway
-- Network Adapter Information
-
-Command executed:
-
-``` ipconfig /all```
-
-
-
----
-
-## Windows Command Prompt Utilities
+### Windows Command Prompt Utilities
 
 The Windows Command Prompt was used to identify:
 
@@ -94,72 +86,41 @@ The Windows Command Prompt was used to identify:
 - Default Gateway
 - Physical (MAC) Address
 
+Command executed:
 
----
+``` ipconfig /all```
 
-
----
-
-## Local Network Enumeration
-
-The Windows 10 virtual machine was analyzed to determine:
-
-- Assigned IP address
-- MAC address
-- Network adapter details
-- Gateway configuration
-
+<img width="1033" height="734" alt="windows-cmd-results" src="https://github.com/user-attachments/assets/dd9610b5-449f-4c89-83f4-6287313fe8a1" />
 
 ---
 
 ## Network Scanning with Zenmap
-Zenmap, the graphical interface for Nmap, was used to perform a Ping Scan to identify active hosts on the network.
+Zenmap, the graphical interface for Nmap, was installed and used to perform a Ping Scan to identify active hosts on the network.
 
-### Sample Scan Type
+<img width="1032" height="725" alt="zenmap-installation" src="https://github.com/user-attachments/assets/c777501a-9050-42f6-86ff-b3b43d765d53" />
 
-nmap \-sn <target\-network>Purpose:
+### Ping Scan
 
+```nmap -sn 10.0.0.10/24``` 
+Purpose:
 - Identify active hosts
 - Verify network connectivity
 - Prepare for future enumeration activities
+
+<img width="1022" height="734" alt="zenmap-Ping-scan-results" src="https://github.com/user-attachments/assets/1d6581fc-88a7-4b28-9442-62c20a32642f" />
+
+
+#### Zenmap Legend and Topology
+<img width="1027" height="728" alt="zenmap-legend-and-topology" src="https://github.com/user-attachments/assets/1a8ab438-73de-4c3a-ab83-974ab211a6b7" />
 
 ---
 
 # Findings Summary
 
-| Category | Information Collected |
-| --- | --- |
-| Domain Information | WHOIS records |
-| DNS Information | DNS records and hostname information |
-| Web Technologies | Server and application details |
-| Security Controls | Potential WAF detection |
-| HTTP Data | Response headers and web content |
-| Local Host Information | IP address and MAC address |
-| Network Hosts | Live systems discovered through Ping Scan |
-
----
-
-# Evidence
-
-## Screenshots Included
-
-### Reconnaissance Evidence
-
-- WHOIS results
-- WhatWeb output
-- DNSRecon output
-- NSLookup results
-- cURL responses
-- WAFW00F detection results
-
-### Windows Enumeration Evidence
-
-- ``` ipconfig /all ```
-
-### Network Scanning Evidence
-
-- Zenmap Ping Scan results
-- Host discovery results
+**Domain registration and DNS:**  The WHOIS record lists GoDaddy.com, LLC as registrar and ns6135.hostgator.com / ns6136.hostgator.com as name servers. WHOIS reports “DNSSEC: unsigned”. DNSRecon and NSLookup show an A-address of 192.232.216.135; DNSRecon also displayed MX, SPF TXT and SRV records. These are point-in-time records, not proof of DNS hosting design or mail-system security.
+**Website technology footprint:**  WhatWeb identified Apache, WordPress 7.1.4, WordPress Download Manager 3.3.76, Bootstrap 7.1.4, and jQuery 3.7.1. These version strings are externally reported fingerprints; direct verification and patch-state assessment were not performed.
+**HTTP metadata:**  The captured curl -I https://networkwalks.com response returned HTTP/1.1 200 OK. The sample includes Referrer-Policy: no-referrer-when-downgrade and a __wpdm_client cookie marked Secure and HttpOnly.
+**WAF detection:**  WAFW00F identified ModSecurity (SpiderLabs) and reported two requests. This confirms a tool detection result, not the effectiveness, configuration, or coverage of the protection.
 
 ---
 
@@ -179,7 +140,7 @@ Understanding host availability and network structure is a prerequisite for furt
 
 ### 4\. Ethics Matter
 
-Security assessments should only be conducted with proper authorization and within approved environments.
+Security assessments should only be conducted with proper authorisation and within approved environments.
 
 ---
 
