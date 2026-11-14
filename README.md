@@ -1,13 +1,12 @@
 # Week 2 Penetration Testing Report
 
-## Networkwalks Cybersecurity Internship Program (Batch B084)
+## Reconnaissance, Footprinting & Network Host Discovery
 
-### Overview
+## Overview
 
-This repository contains the documentation and evidence collected during **Week 2** of the **Networkwalks Cybersecurity Internship Program (Batch B084)**. The project focused on **Reconnaissance and Network Scanning**, introducing the process of gathering publicly available information about the target, **networkwalks.com**, and perform network discovery within a controlled lab environment.
+This repository contains the documentation and evidence collected during **Week 2** of the **Networkwalks Cybersecurity Internship Program (Batch B084)**. The project focused on **Reconnaissance and Network Scanning**, introducing the process of gathering publicly available information about the target, **networkwalks.com**, and perform network discovery using a personally controlled virtual LAN.
 
-**Disclaimer:** All activities documented in this report were performed in an authorized educational environment. Reconnaissance activities against **networkwalks.com** were limited to publicly available information and conducted for training purposes as part of the internship program.
-
+**Liability Disclaimer:**  All assessment activities documented in this report were conducted within authorised environments, including personally owned systems and systems for which written authorisation was provided. The information presented is intended solely for educational, research, and professional development purposes. Readers must ensure that any security testing is performed only with proper authorisation from the system owner. Individuals who engage in unauthorised access, scanning, or testing activities may be subject to criminal charges, financial fines, and other legal consequences. Compliance with all applicable laws, regulations, and ethical standards remains the sole responsibility of the reader.
 
 ---
 
@@ -26,17 +25,10 @@ This repository contains the documentation and evidence collected during **Week 
 |Phasese Covered| Phase 1: Reconnaissance & Footprinting and Phase 2: Scanning & Network Discovery|
 
 ---
+# Summary
 
-# Objectives
-
-The objectives of this project were to:
-
-- Gather publicly available information about **networkwalks.com**.
-- Identify DNS and domain\-related information.
-- Enumerate web technologies used by the target website.
-- Detect potential security controls protecting web assets.
-- Perform host discovery and network scanning in a virtual lab environment.
-- Document findings in a professional penetration testing report.
+This Week 2 exercise examined public information about networkwalks.com and, separately, performed basic host discovery in a personally controlled virtualized network. Evidence includes Kali Linux tool outputs, a Windows 10 ipconfig capture, Zenmap screenshots, and a topology export.
+The external investigation collected domain registration, DNS, web technology, HTTP response, and WAF fingerprints. The Zenmap scan identified four responsive IP addresses in the 10.0.0.0/24 subnet. The activity did not include application exploitation, credential testing, full service/port enumeration, or independent validation of vulnerabilities.
 
 ---
 
@@ -48,7 +40,7 @@ Using Kali Linux, the following reconnaissance activities were performed against
 
 ### WHOIS
 
-Collected publicly available domain registration information.
+Used to gather public registration information associated with a domain, including registrar details and registration records.
 
 ### NSLookup
 
@@ -56,20 +48,19 @@ Queried DNS records associated with **networkwalks.com**.
 
 ### DNSRecon
 
-Performed DNS enumeration to identify available DNS\-related information.
+Performed DNS enumeration to identify available DNS-related information.
 
 ### WhatWeb
 
 Identified technologies, frameworks, and web server characteristics associated with **networkwalks.com**.
 
-### cURL
+### cURL -l
 
 Retrieved HTTP response information and examined web headers.
 
 ### WAFW00F
 
-Checked for the presence of web application firewalls protecting the website.
-
+Used to detect the presence of Web Application Firewalls (WAFs) protecting web applications.
 
 ---
 
@@ -86,51 +77,11 @@ The following information was identified:
 - Default Gateway
 - Network Adapter Information
 
-Commands executed:
+Command executed:
 
 ``` ipconfig /all```
 
-### Zenmap Scan
 
-A Ping Scan was conducted against the lab network using Zenmap to identify live hosts and verify connectivity within the virtualized environment.
-
----
-
-# Tools Utilized
-
-## Reconnaissance Tools (Kali Linux)
-
-### WHOIS
-
-Used to gather public registration information associated with a domain, including registrar details and registration records.
-
-### WhatWeb
-
-Used to identify web technologies, frameworks, servers, and applications running on a target website.
-
-### NSLookup
-
-Used to query DNS records and verify hostname\-to\-IP address mappings.
-
-### cURL
-
-Used to retrieve web content, inspect HTTP headers, and interact with web services from the command line.
-
-### WAFW00F
-
-Used to detect the presence of Web Application Firewalls (WAFs) protecting web applications.
-
-### DNSRecon
-
-Used to perform DNS enumeration and gather detailed DNS\-related information.
-
----
-
-## Network Scanning Tool
-
-### Zenmap
-
-Zenmap, the graphical interface for Nmap, was used to perform a Ping Scan to identify active hosts on the network.
 
 ---
 
@@ -143,26 +94,9 @@ The Windows Command Prompt was used to identify:
 - Default Gateway
 - Physical (MAC) Address
 
-### Commands Executed
-
-``` ipconfig /all ```
 
 ---
 
-# Tasks Performed
-
-## Footprinting and Reconnaissance
-
-Information gathering activities were performed using multiple Kali Linux utilities to collect publicly available information about the target.
-
-Activities included:
-
-1. Domain registration research
-2. DNS enumeration
-3. Technology stack identification
-4. Web server analysis
-5. Firewall detection
-6. HTTP header inspection
 
 ---
 
@@ -175,13 +109,11 @@ The Windows 10 virtual machine was analyzed to determine:
 - Network adapter details
 - Gateway configuration
 
-Evidence was captured using Command Prompt outputs.
 
 ---
 
 ## Network Scanning with Zenmap
-
-Zenmap was used to perform host discovery through a Ping Scan.
+Zenmap, the graphical interface for Nmap, was used to perform a Ping Scan to identify active hosts on the network.
 
 ### Sample Scan Type
 
